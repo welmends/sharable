@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "5001:5001"
+    environment:
+      - ENV=production
+
+  ui:
+    build: ./ui
+    ports:
+      - "3001:3000"
+    environment:
+      - ENV=production
+      - API_HOSTNAME=
+    depends_on:
+      - api
