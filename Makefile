@@ -15,3 +15,9 @@ build:
 
 up:
 	docker-compose up
+
+bash-ui:
+	docker exec -it $(shell docker ps -aq --filter ancestor=share-note-ui) bash
+
+bash-api:
+	docker exec -it $(shell docker ps -aq --filter ancestor=share-note-ui) bash

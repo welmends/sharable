@@ -7,6 +7,7 @@ services:
       - "5001:5001"
     environment:
       - ENV=production
+      - MONGO_URI=
 
   ui:
     build: ./ui
