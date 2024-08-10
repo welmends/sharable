@@ -1,0 +1,49 @@
+name: CI/CD pipeline
+
+env:
+  MONGO_URI: ${{ secrets.MONGO_URI }}
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+  tests-ui:
+    runs-on: ubuntu-latest
+    needs: checkout
+
+    steps:
+      - name: Run tests for UI
+        run: |
+          echo "Running tests for UI (TODO...)"
+          cd ui/
+          ls
+
+  tests-api:
+    runs-on: ubuntu-latest
+    needs: checkout
+
+    steps:
+      - name: Run tests for API
+        run: |
+          echo "Running tests for API (TODO...)"
+          cd api/
+          ls
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - tests-ui
+      - tests-api
+
+    steps:
+      - name: Deploy to Vercel
+        run: |
+          echo "Starting deployment on Vercel (TODO...)"
