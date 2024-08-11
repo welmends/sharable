@@ -5,8 +5,10 @@ import Note from "@/models/noteModel";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
+  console.log("Trying to connect to MongoDB...");
   await connectDB();
-
+  console.log("Connected!");
+  
   const { name } = params;
 
   try {
