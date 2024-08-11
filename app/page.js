@@ -21,7 +21,7 @@ const Home = () => {
         type="text"
         value={noteName}
         onChange={(e) => setNoteName(e.target.value)}
-        className="input input-bordered w-full max-w-xs hover:input-primary"
+        className="input input-bordered w-full max-w-xs bg-white hover:input-primary"
         placeholder="your-note-name"
       />
       <button onClick={handleSearch} className="btn btn-primary">

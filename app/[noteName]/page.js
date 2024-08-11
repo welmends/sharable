@@ -5,6 +5,17 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const MAX_LENGTH = 16384; // 16 Kb
+
+const truncateContent = (content) => {
+  if (Buffer.byteLength(content, "utf8") > MAX_LENGTH) {
+    toast.warn("Max input size achieved");
+    let truncatedContent = content.slice(0, MAX_LENGTH - 3);
+    return truncatedContent + "...";
+  }
+  return content;
+};
+
 const NotePage = ({ params }) => {
   const { noteName } = params;
   const [content, setContent] = useState("");
@@ -20,6 +31,10 @@ const NotePage = ({ params }) => {
 
   const handleBack = () => {
     router.push(`/`);
+  };
+
+  const handleChange = (event) => {
+    setContent(truncateContent(event.target.value));
   };
 
   const handleSave = () => {
@@ -60,7 +75,7 @@ const NotePage = ({ params }) => {
       <div className="flew-grow flex flex-col items-center justify-between gap-4 mx-auto p-4 pt-20">
         <textarea
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={handleChange}
           className="flex-grow textarea textarea-bordered w-full bg-white resize-none hover:textarea-primary"
           rows={20}
         />
