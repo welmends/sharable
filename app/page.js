@@ -14,17 +14,17 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Share Notes</h1>
-      <p className="text-lg mb-8">A simple way to share notes online</p>
+    <div className="flex flex-col items-center justify-center gap-4">
+      <h1 className="text-2xl font-bold">Share Notes</h1>
+      <p className="text-lg">A simple way to share notes online</p>
       <input
         type="text"
         value={noteName}
         onChange={(e) => setNoteName(e.target.value)}
-        className="input input-bordered w-full max-w-xs"
+        className="input input-bordered w-full max-w-xs hover:input-primary"
         placeholder="your-note-name"
       />
-      <button onClick={handleSearch} className="btn btn-primary mt-4">
+      <button onClick={handleSearch} className="btn btn-primary">
         Go!
       </button>
     </div>

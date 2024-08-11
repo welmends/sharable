@@ -34,8 +34,8 @@ const NotePage = ({ params }) => {
   };
 
   return (
-    <>
-      <div className="relative">
+    <div>
+      <div className="flow">
         <button
           onClick={handleBack}
           className="btn btn-primary absolute top-4 left-4 p-2 rounded-full"
@@ -57,19 +57,19 @@ const NotePage = ({ params }) => {
           </svg>
         </button>
       </div>
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flew-grow flex flex-col items-center justify-between gap-4 mx-auto p-4 pt-20">
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="textarea textarea-bordered w-full max-w-lg"
-          rows="15"
+          className="flex-grow textarea textarea-bordered w-full bg-white resize-none hover:textarea-primary"
+          rows={20}
         />
         <button onClick={handleSave} className="btn btn-primary mt-4">
           Save
         </button>
         <ToastContainer />
       </div>
-    </>
+    </div>
   );
 };
 
