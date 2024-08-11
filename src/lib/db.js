@@ -8,6 +8,8 @@ if (!cached) {
 }
 
 const connectDB = async () => {
+  console.log("Trying to connect to MongoDB...");
+  console.log(process.env.MONGO_URI);
   if (cached.conn) {
     return cached.conn;
   }
@@ -18,6 +20,9 @@ const connectDB = async () => {
       .then((mongoose) => {
         return mongoose;
       });
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
   }
   cached.conn = await cached.promise;
   return cached.conn;
