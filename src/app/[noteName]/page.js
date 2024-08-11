@@ -12,7 +12,7 @@ const NotePage = ({ params }) => {
 
   useEffect(() => {
     if (noteName) {
-      fetch(`http://localhost:5001/api/note/${noteName}`)
+      fetch(`api/notes/${noteName}`, { method: "GET" })
         .then((res) => res.json())
         .then((data) => setContent(data.content || ""));
     }
@@ -24,7 +24,7 @@ const NotePage = ({ params }) => {
 
   const handleSave = () => {
     toast("Saving...");
-    fetch(`http://localhost:5001/api/note/${noteName}`, {
+    fetch(`api/notes/${noteName}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
