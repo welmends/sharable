@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const MAX_LENGTH = 16384; // 16 Kb
+const MAX_CONTENT_LENGTH = 16384; // 16 Kb
 
 const truncateContent = (content) => {
-  if (Buffer.byteLength(content, "utf8") > MAX_LENGTH) {
+  if (Buffer.byteLength(content, "utf8") > MAX_CONTENT_LENGTH) {
     toast.warn("Max input size achieved");
-    let truncatedContent = content.slice(0, MAX_LENGTH - 3);
+    let truncatedContent = content.slice(0, MAX_CONTENT_LENGTH - 3);
     return truncatedContent + "...";
   }
   return content;
@@ -76,7 +76,7 @@ const NotePage = ({ params }) => {
         <textarea
           value={content}
           onChange={handleChange}
-          className="flex-grow textarea textarea-bordered w-full bg-white resize-none hover:textarea-primary"
+          className="flex-grow textarea textarea-bordered w-full bg-white resize-none rounded-md hover:textarea-primary"
           rows={20}
         />
         <button onClick={handleSave} className="btn btn-primary mt-4">

@@ -3,9 +3,16 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const MAX_INPUT_LENGTH = 30;
+
 const Home = () => {
   const [noteName, setNoteName] = useState("");
   const router = useRouter();
+
+  const handleChange = (event) => {
+    const input = event.target.value;
+    setNoteName(input.slice(0, MAX_INPUT_LENGTH));
+  };
 
   const handleSearch = () => {
     if (noteName) {
@@ -20,7 +27,7 @@ const Home = () => {
       <input
         type="text"
         value={noteName}
-        onChange={(e) => setNoteName(e.target.value)}
+        onChange={handleChange}
         className="input input-bordered w-full max-w-xs bg-white hover:input-primary"
         placeholder="your-note-name"
       />
