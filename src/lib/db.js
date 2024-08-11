@@ -1,31 +1,21 @@
-// lib/db.js
 import mongoose from "mongoose";
 
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+global.mongoose = global.mongoose || { conn: null, promise: null };
 
 const connectDB = async () => {
-  console.log("Init connectDB");
-  if (cached.conn) {
-    console.log("Cached!");
-    return cached.conn;
+  if (global.mongoose.conn) {
+    return global.mongoose.conn;
   }
-  
-  console.log("Promise..");
-  if (!cached.promise) {
-    cached.promise = mongoose
-      .connect(process.env.MONGO_URI)
-      .then((mongoose) => {
-        return mongoose;
-      });
+
+  if (!global.mongoose.promise) {
+    global.mongoose.promise = mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      bufferCommands: false,
+    }).then((mongoose) => mongoose);
   }
-  console.log("Await promise..");
-  cached.conn = await cached.promise;
-  console.log("Return connection");
-  return cached.conn;
+  global.mongoose.conn = await global.mongoose.promise;
+  return global.mongoose.conn;
 };
 
 export default connectDB;
