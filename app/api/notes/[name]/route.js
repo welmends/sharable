@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic"; // static by default, unless reading the request
 
-import connectDB from "../../../../lib/db";
-import Note from "../../../../models/noteModel";
+import connectDB from "@/lib/db";
+import Note from "@/models/noteModel";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
