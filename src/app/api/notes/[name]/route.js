@@ -10,13 +10,17 @@ export async function GET(req, { params }) {
   const { name } = params;
 
   try {
+    console.log("Trying to request one note: ${name}");
     const note = await Note.findOne({ name });
     if (note) {
+      console.log(">>> 200: ${note}");
       return NextResponse.json(note);
     } else {
+      console.log(">>> 404");
       return NextResponse.json({ message: "Note not found" }, { status: 404 });
     }
   } catch (error) {
+    console.log(">>> 500");
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
