@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const MAX_INPUT_LENGTH = 30;
@@ -8,10 +8,6 @@ const MAX_INPUT_LENGTH = 30;
 const Home = () => {
   const [noteName, setNoteName] = useState("");
   const router = useRouter();
-
-  useEffect(() => {
-    fetch(`api/ping`, { method: "GET" }); // Init DB
-  }, []);
 
   const handleChange = (event) => {
     const input = event.target.value;
